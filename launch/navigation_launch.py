@@ -135,13 +135,13 @@ def generate_launch_description():
             parameters=[configured_params],
             remappings=remappings),
             
-        #Node(
-        #    package='nav2_map_server',
-        #    executable='map_server',
-        #    name='map_server',
-        #    output='screen',
-        #    parameters=[configured_params],
-        #    remappings=remappings),
+        Node(
+            package='nav2_map_server',
+            executable='map_server',
+            name='map_server',
+            output='screen',
+            parameters=[configured_params],
+            remappings=remappings),
 
         Node(
             package='nav2_lifecycle_manager',
@@ -152,10 +152,10 @@ def generate_launch_description():
                         {'autostart': autostart},
                         {'node_names': lifecycle_nodes}]),
                         
-        Node(
-            package='tf2_ros',
-            executable='static_transform_publisher',
-            name='static_map_tf',
-            arguments=['0.0', '0.0', '0', '0', '0', '0', 'map', 'odom'] ),
+        #Node(
+        #    package='tf2_ros',
+        #    executable='static_transform_publisher',
+        #    name='static_map_tf',
+        #    arguments=['0.0', '0.0', '0', '0', '0', '0', 'map', 'odom'] ),
 
     ])

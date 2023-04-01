@@ -41,11 +41,16 @@ def generate_launch_description():
         emulate_tty=True,
     )
     
+    config_dir = os.path.join(
+        get_package_share_directory('my_robot_bringup'),
+        'config')
+    gps_params = os.path.join(config_dir, 'gps.yaml')
     gps_fusion_node = Node(
         package="mowpi_comm2",
         executable="gps_fusion",
         output="screen",
         emulate_tty=True,
+        parameters=[gps_params],
     )
     
     # The map is only published once when activated, and scan_sim_launch misses it
