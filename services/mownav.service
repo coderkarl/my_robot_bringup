@@ -1,0 +1,14 @@
+[Unit]
+Description = ROS2 mownav
+After=rplidar.service
+
+[Service]
+User = ubuntu
+
+ExecStart = /bin/bash -ic "ros2 launch my_robot_bringup mow.launch.py"
+
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy = multi-user.target

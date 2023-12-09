@@ -1,11 +1,15 @@
 [Unit]
 Description = ROS2 rplidar
+After=network.target
 
 [Service]
 User = ubuntu
 
-ExecStart = /bin/bash -ic "ros2 launch my_robot_bringup create_rplidar.launch.py"
+ExecStart = /bin/bash -ic "ros2 launch my_robot_bringup rplidar_a3.launch.py"
 ExecStop = /bin/bash -ic "ros2 service call /stop_motor std_srvs/srv/Empty"
+
+Restart=always
+RestartSec=3
 
 [Install]
 WantedBy = multi-user.target

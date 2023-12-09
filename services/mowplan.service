@@ -1,0 +1,14 @@
+[Unit]
+Description = ROS2 mowplan
+After=mownav.service
+
+[Service]
+User = ubuntu
+
+ExecStart = /bin/bash -ic "ros2 launch nav_sim sim_avoid_obstacles2.launch.py"
+
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy = multi-user.target
