@@ -1,0 +1,10 @@
+[Unit]
+Description = ROS2 create mow
+
+[Service]
+User = ubuntu
+
+ExecStart = /bin/bash -ic "ros2 launch my_robot_bringup create_mow.launch.py"
+
+[Install]
+WantedBy = multi-user.target
