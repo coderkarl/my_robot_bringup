@@ -12,9 +12,9 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 def generate_launch_description():
     ld = LaunchDescription()
     
-    rplidar_launch = IncludeLaunchDescription(
+    lidar_launch = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
-                get_package_share_directory('my_robot_bringup') + '/launch/rplidar_a3.launch.py')
+                get_package_share_directory('ldlidar_stl_ros2') + '/launch/ld19.launch.py')
     )
     
     ublox_gps_launch = IncludeLaunchDescription(
@@ -48,14 +48,15 @@ def generate_launch_description():
     gps_fusion_node = Node(
         package="mowpi_comm2",
         executable="gps_fusion",
+        name="gps_fusion",
         output="screen",
         emulate_tty=True,
         parameters=[gps_params],
     )
     
     # The map is only published once when activated, and scan_sim_launch misses it
-    ld.add_action(rplidar_launch)
-    ld.add_action(nxp_node)
+    ld.add_action(lidar_launch)
+    #ld.add_action(nxp_node)
     ld.add_action(ublox_gps_launch)
     ld.add_action(mowpi_node)
     ld.add_action(gps_fusion_node)
