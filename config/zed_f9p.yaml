@@ -1,12 +1,28 @@
 ublox_gps_node:
   ros__parameters:
-    device: /dev/ttyACM0
+    device: /dev/gps
     frame_id: gps
-    uart1:
-      baudrate: 38400
-      in: 32                    # RTCM 3
-      out: 0                    # No UART out for rover
-    config_on_startup: false
+    #uart1:
+    #  baudrate: 38400
+    #  in: 32                    # RTCM 3
+    #  out: 0                    # No UART out for rover
+    
+    gnss:
+      glonass: true             # Supported by C94-M8P
+      beidou: true             # Supported by C94-M8P
+      galileo: true
+      qzss: false               # Supported by C94-M8P
+    
+    config_on_startup: true
+    
+    # TMODE3 Config
+    tmode3: 0                   # Survey-In Mode
+    sv_in:
+      reset: false              # True: disables and re-enables survey-in (resets)
+                                # False: Disables survey-in only if TMODE3 is
+                                # disabled
+      min_dur: 10              # Survey-In Minimum Duration [s]
+      acc_lim: 30.0              # Survey-In Accuracy Limit [m]
     
     inf:
       all: false                 # Whether to display all INF messages in console
@@ -22,7 +38,7 @@ ublox_gps_node:
     fix_mode: auto
     enable_ppp: false           # Not supported by C94-M8P
     dr_limit: 0
-    dgnss_mode: 3               # 2 RTK float (prevents jumps), 3 RTK Fixed mode
+    dgnss_mode: 2               # 2 RTK float (prevents jumps), 3 RTK Fixed mode
     
     
     # Enable u-blox message publishers

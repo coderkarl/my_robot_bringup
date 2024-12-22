@@ -14,7 +14,7 @@ def generate_launch_description():
     
     rplidar_launch = IncludeLaunchDescription(
             PythonLaunchDescriptionSource(
-                get_package_share_directory('my_robot_bringup') + '/launch/rplidar_a3.launch.py')
+                get_package_share_directory('ldlidar_stl_ros2') + '/launch/ld19.launch.py')
     )
     
     ublox_gps_launch = IncludeLaunchDescription(
